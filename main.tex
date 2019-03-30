@@ -5,22 +5,77 @@
 \usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{siunitx}
+\usepackage{fancyhdr}
+\usepackage{graphicx, wrapfig, subcaption, setspace, booktabs}
+\usepackage{lastpage}
+\usepackage[myheadings]{fullpage}
+\usepackage{mathtools}
 
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 
 \input{tikzlibraryoptics.code.tex}
 \usetikzlibrary{calc}
 
-\title{Index of Refraction Lab Report}
-\author{Billy Shaw \\ with Raven and Micheal}
-\date{\small\itshape\today}
+\onehalfspacing
+\setcounter{tocdepth}{0}
+\setcounter{secnumdepth}{0}
+
+
+
+%-------------------------------------------------------------------------------
+% HEADER & FOOTER
+%-------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\setlength\headheight{15pt}
+\fancyhead[L]{Billy Shaw}
+\fancyhead[R]{Index of Refraction Lab Report}
+\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+
+%-------------------------------------------------------------------------------
+% TITLE PAGE
+%-------------------------------------------------------------------------------
+
 \begin{document}
+
+\title{ \normalsize \textsc{AP Physics 2}
+		\\ [2.0cm]
+		\HRule{0.5pt} \\
+		\LARGE \textbf{\uppercase{Index of Refraction Lab Report}}
+		\HRule{2pt} \\ [0.5cm]
+		\normalsize \today \vspace*{5\baselineskip}}
+
+\date{}
+
+\author{
+		Billy \\ 
+		with Raven \& Michael}
 
 \maketitle
 
+\clearpage
+
 \section{Introduction}
-In the Index of Refrflipping action Lab, we were missioned to measure the index of refraction of a glycol box and the critical angle for a laser moving into a water container, using provided materials.
+In the Index of Refraction Lab, we were missioned to measure the index of refraction of a glycol box, as well as the critical angle for a laser moving into a water container, using provided materials.
 
 \section{Experimental Setup}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=12cm]{setup-1.pdf}
+	\caption{Experiment Setup 1 (reflection not drawn); in our expectation, $n_1\sin{\theta_1}=n_2\sin{\theta_2}$}
+	\centering
+  \label{label:Setup}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=12cm]{setup-2.pdf}
+	\caption{Experiment Setup 2}
+	\centering
+  \label{label:Setup}
+\end{figure}
+\clearpage
 
 \section{Data \& Result}
 \begin{table}[!ht]\footnotesize
@@ -64,16 +119,86 @@ To calculate the index of refraction, we apply Snell's law:
 \end{align}
 Take row $\theta_1=\ang{50}, \theta_2=\ang{32}$ as an example:
 \begin{align*}
-    n_2&=\frac{n_1\sin{\theta_1}}{\sin{\theta_2}} \\
-    &=\frac{1\times\sin{\ang{50}}}{\sin{\ang{32}}} \\
-    &\approx1.45
+    n_2&=\frac{n_1\sin{\theta_1}}{\sin{\theta_2}}=\frac{1\times\sin{\ang{50}}}{\sin{\ang{32}}}\approx1.45
 \end{align*}
+Calculating critical angle based on known index of refraction:
+\begin{align*}
+  n_1\sin{\theta_c}&=n_2\sin{\theta_2} \label{snells_law}\tag{Snell's Law} \\
+  \sin \theta_{c}&=\frac{n_{2}}{n_{1}} \sin{\ang{90}}\\
+  \theta_{c}&=\arcsin{\frac{n_{2}}{n_{1}}} \label{Critical Angle Equation} \tag{Critical Angle Equation}
+\end{align*}
+\clearpage
+\subsection{Result}
+\begin{table}[!ht]\footnotesize
+	\centering
+    \begin{tabular}{c|c|c}
+        \multicolumn{3}{c}{\textbf{Result for Experiment 1}}\\ \hline
+        Angle of Incidence & Angle of Refraction & Reflective Index \\ \hline
+        \ang{70}&\ang{42}&1.40\\
+        \ang{60}&\ang{38}&1.41\\
+        \ang{50}&\ang{32}&1.45\\
+        \ang{40}&\ang{28}&1.37\\
+        \ang{30}&\ang{20}&1.46\\
+        \ang{20}&\ang{16}&1.24*\\
+        \ang{10}&\ang{8}&1.25*\\
+        \hline
+        \multicolumn{1}{c}{\textbf{Average $n$}} & \multicolumn{1}{c}{} & 1.42\\
+        \hline
+        \end{tabular}
+
+  \caption{Result for experiment 1, derived by using Equation (1); the average reflective index for glycol, $n\approx1.42$ (*since the last two row appear to be outliers, they are ignored when calculating the average value).}
+	\label{table: index of refraction}
+\end{table}
+
+
 \section{Discussion Questions}
 \subsection{Do we need to consider the central medium when calculating the index of refraction?}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=12cm]{disc-1.pdf}
+	\caption{Ray Diagram for Experiment 1}
+	\centering
+  \label{label:Disc-1}
+\end{figure}
+No, we don't need to consider the central when calculating the reflective index. The reason is that since $l_1 \parallel l_2$, $\theta_{g1}=\theta_{g2}$. By employing Snell's law,
+\begin{equation*}
+  \begin{cases}
+    n_1\sin{\theta_1}=n_g\sin{\theta_{g1}}\\
+    n_g\sin{\theta_{g2}}=n_2\sin{\theta_1}\\
+    \theta_{g1}=\theta_{g2}
+  \end{cases},
+\end{equation*}
+we get $n_1\sin{\theta_1}=n_2\sin{\theta_2}$, which doesn't involve $n_g$. Thus, it should be fine to ignore the intermedium.
 \subsection{Why doesn't the critical angle match up with our expectation. Should it?}
+The critical angle of air to water, according to Snell's law, should be the $\theta_1$ when $\theta_2=\ang{90}$, $n_1=1$, and $n_2=1.33$. Plugging in the numbers into the critical angle equation we derived before, we end up with the expected critical angle: $\theta_{expected}\approx\ang{48.75}$.
+
+Though the measured critical angle (\ang{51}) is not far away from the expected one, we would admit that they still don't match. One possible explanation could be that our measurement is not accurate (surely our fault, because the equipment is said to be expansive). Nevertheless, a more legitimate excuse is that the expected and the measured should not match at all, due to the "unexpected" central material (i.e., the container). Unlike the previous discussion question, where the intermedium does not matter, the critical angle we measured is actually that between the container and the milky water (see: Figure 2) -- that is, before the incident ray reaches water surface, it has already been refracted once (into a smaller angle, according to Snell's Law when $n_2>n_1$). Thus, we would say that it is impossible to get the same result; instead, a slightly larger one is quite normal. 
+\clearpage
 \subsection{2015 AP® Physics 2 FRQ \#1}
 \subsubsection*{a.}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=12cm]{figure-1.pdf}
+	\caption{Ray Diagram for Part A}
+	\centering
+  \label{label:f1}
+\end{figure}
 \subsubsection*{b.}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=12cm]{figure-2.pdf}
+	\caption{Ray Diagram for Part B, where due to total internal reflection (no more energy loss on Air-Liquid surface), spot Y becomes brighter.}
+	\centering
+  \label{label:f1}
+\end{figure}
+\clearpage
 \subsubsection*{c.}
-
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=12cm]{figure-3.pdf}
+	\caption{Ray Diagram for Part C}
+	\centering
+  \label{label:f1}
+\end{figure}
+When the incident angle increases, spot that disappears, if any, would be the farther one (Y). It is because if and only if $\theta_3$ reaches the liquid-glass critical angle would no refracted beam pass into the liquid to cause the second reflection (which forms spot Y).
 \end{document}

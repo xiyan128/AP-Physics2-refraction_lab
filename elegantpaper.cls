@@ -6,7 +6,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{elegantpaper}[2018/11/22 ElegantLaTeX Paper class]
   
-\LoadClass[11pt]{article}
+\LoadClass[12pt]{report}
 
 % font setting for text and math
 \RequirePackage[T1]{fontenc}
